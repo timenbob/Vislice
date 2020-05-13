@@ -1,5 +1,6 @@
 import model
 
+
 def izpis_igre(igra):
     tekst = (
         "======================================================="
@@ -19,7 +20,7 @@ def izpis_zmage(igra):
         "\n######Ideee, zmaga stari! Geslo je bilo: {geslo} ######\n\n"
 
     ).format(
-        geslo = igra.pravilni_del_gesla()
+        geslo=igra.geslo()
     )
     return tekst
 
@@ -33,7 +34,7 @@ def izpis_poraza(igra):
 
 def zahtevaj_vnos():
     return input("Črka: ")
-    
+
 
 def pozeni_vmesnik():
     igra = model.nova_igra()
