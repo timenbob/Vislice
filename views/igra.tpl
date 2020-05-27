@@ -1,58 +1,48 @@
 % import model
-<!DOCTYPE html>
-<html>
-<body>
+%rebase('base.tpl', title='Vislice')
 
-  <h1>Vislice</h1>
+<table>
+<tr>
+    <td>
+        <h2>{{igra.pravilni_del_gesla()}}</h2>
+    </td>
+</tr>
+<tr>
+    <td>
+        <br> Nepravilni ugibi : {{igra.nepravilni_ugibi()}}
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="../img/{{igra.stevilo_napak()}}.jpg" alt="obesanje">
+    </td>
+</tr>
+</table>
 
-  <blockquote>
-    Vislice so najboljša igra za preganjanje dolgčasa (poleg tetrisa).
-    <small>Študentje</small>
-  </blockquote>
+% if poskus == model.ZMAGA:
 
-  <table>
+<h1>ZMAGA!</h1>
 
-  <tr>
-      <td>
-           <h2>{{igra.pravilni_del_gesla()}}</h2>
-      </td>
-  </tr>
-
-  <tr>
-      <td>
-            Nepravilni ugibi: {{igra.nepravilni_ugibi()}} 
-      </td>
-  </tr>
-
-  <tr>
-      <td>
-        <img src="../../img/{{igra.stevilo_napak()}}.jpg" alt="obesanje"> 
-      </td>
-  </tr>
-
-  </table>
-
-  % if poskus == model.ZMAGA:
-
-  <h1>ZMAGA!</h1>
-
-  <form action="/igra/" method="post">
+<form action="/nova_igra/" method="post">
     <button type="submit">Nova igra</button>
-  </form>
+</form>
 
-  %elif poskus == model.PORAZ:
+% elif poskus == model.PORAZ:
 
-  <h1>zgubu</h1>
+<h1>SMRT!</h1>
 
-  pravilno geslo : {{igra.geslo}}
+Pravilno geslo: {{igra.geslo}}
 
-  %else:
+<form action="/nova_igra/" method="post">
+    <button type="submit">Nova igra</button>
+</form>
 
-  <form action="/igra/{{id_igre}}/" method="post">
+% else:
+
+<form action="/igra/" method="post">
     Črka: <input type="text" name="crka" autofocus>
     <button type="submit">Pošlji ugib</button>
-  </form>
-  %end
-</body>
+</form>
+% end
 
-</html>
+
